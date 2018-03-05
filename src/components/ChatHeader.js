@@ -11,11 +11,11 @@ const styles = theme => ({
   },
 });
 
-const ChatHeader = ({ classes }) => (
+const ChatHeader = ({ classes, textHeader }) => (
   <AppBar color="primary" className={classes.appBar}>
     <Toolbar>
       <Typography variant="title" color="inherit" noWrap>
-        DogeCodes React Chat
+        {textHeader}
       </Typography>
     </Toolbar>
   </AppBar>

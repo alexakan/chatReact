@@ -7,7 +7,7 @@ import { chats, messages } from '../mock-data';
 
 const ChatPage = ({ classes }) => (
   <React.Fragment>
-    <ChatHeader />
+    <ChatHeader textHeader = 'DogeCodes React Chat'/>
     <Sidebar chats={chats} />
     <Chat messages={messages}/>
   </React.Fragment>
