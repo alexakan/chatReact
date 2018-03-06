@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import Typography from 'material-ui/Typography';
-
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   paper: {
@@ -25,13 +25,23 @@ class WelcomePage extends React.Component {
     activeTab: 0,
   };
 
+  componentDidMount() {
+    this.props.recieveAuth();
+  }
+
   handleChange = (event, value) => {
     this.setState({ activeTab: value });
   };
 
   render() {
-    const { classes} = this.props;
+    const { classes, signup, login, isAuthenticated} = this.props;
     const { activeTab } = this.state;
+
+    if (isAuthenticated) {
+      return (
+        <Redirect to="/chat" />
+      )
+    }
 
     return (
       <React.Fragment>
@@ -56,8 +66,8 @@ class WelcomePage extends React.Component {
                 </Tabs>
               </AppBar>
                 <div className = {classes.tabContent}>
-                  {activeTab === 0 && <LoginForm />}
-                  {activeTab === 1 && <SignupForm />}
+                  {activeTab === 0 && <LoginForm onSubmit={login}/>}
+                  {activeTab === 1 && <SignupForm onSubmit={signup}/>}
                 </div>
             </Paper>
           </Grid>
